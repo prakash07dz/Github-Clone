@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const http = require("http");
 const { Server } = require("socket.io");
 const mainRouter = require("./routes/main.router");
-const cors = require("cors");
 
 dotenv.config();
 
