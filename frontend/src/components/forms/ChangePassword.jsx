@@ -22,7 +22,7 @@ function ChangePassword() {
     };
 
     try {
-      const response = await fetch("http://localhost:3002/change-password", {
+      const response = await fetch("https://github-clone-v5ul.onrender.com/change-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -28,10 +28,13 @@ const CreateRepository = ({ currentUser }) => {
     window.location.href = "/";
 
     try {
-      const response = await axios.post("http://localhost:3002/repo/create", {
-        ...formData,
-        owner: currentUser,
-      });
+      const response = await axios.post(
+        "https://github-clone-v5ul.onrender.com/repo/create",
+        {
+          ...formData,
+          owner: currentUser,
+        }
+      );
       setMessage(response.data.message);
       setFormData({ name: "", description: "", content: "", visibility: true });
     } catch (error) {

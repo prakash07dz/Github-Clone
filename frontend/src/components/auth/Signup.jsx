@@ -17,17 +17,20 @@ const Signup = () => {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:3002/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          username: username,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://github-clone-v5ul.onrender.com/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            username: username,
+            password: password,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

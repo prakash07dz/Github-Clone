@@ -18,7 +18,7 @@ const Dashboard = () => {
     const fetchRepositories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3002/repo/user/${userId}`
+          `https://github-clone-v5ul.onrender.com/repo/user/${userId}`
         );
         if (!response.ok) {
           if (response.status === 404) {
@@ -37,7 +37,9 @@ const Dashboard = () => {
 
     const fetchSuggestedRepositories = async () => {
       try {
-        const response = await fetch(`http://localhost:3002/repo/all`);
+        const response = await fetch(
+          `https://github-clone-v5ul.onrender.com/repo/all`
+        );
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);
         }

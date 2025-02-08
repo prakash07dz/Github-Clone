@@ -15,7 +15,6 @@ function AccountSettings() {
       alert("Passwords do not match!");
     } else {
       alert("Password changed successfully!");
-      // Implement the password change logic
     }
   };
 
@@ -25,7 +24,6 @@ function AccountSettings() {
 
   const handleDeleteAccount = () => {
     if (window.confirm("Are you sure you want to delete your account?")) {
-      // Implement account deletion logic
       alert("Account deleted.");
     }
   };
@@ -37,7 +35,6 @@ function AccountSettings() {
           Account Settings
         </h2>
 
-        {/* Profile Picture */}
         <div className="mb-6 flex justify-center relative">
           <div className="relative group">
             <img
@@ -53,7 +50,6 @@ function AccountSettings() {
           </div>
         </div>
 
-        {/* Change Email */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-300">
             Email
@@ -67,7 +63,6 @@ function AccountSettings() {
           />
         </div>
 
-        {/* Change Username */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-300">
             Username
@@ -81,7 +76,6 @@ function AccountSettings() {
           />
         </div>
 
-        {/* Change Password */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-300">
             New Password
@@ -114,7 +108,6 @@ function AccountSettings() {
           Change Password
         </button>
 
-        {/* Notification Settings */}
         <div className="mt-6 flex items-center">
           <input
             type="checkbox"
@@ -125,7 +118,6 @@ function AccountSettings() {
           <label className="text-sm text-gray-300">Receive Notifications</label>
         </div>
 
-        {/* Privacy Settings */}
         <div className="mt-6">
           <label className="block text-sm font-medium text-gray-300">
             Profile Privacy
@@ -140,7 +132,6 @@ function AccountSettings() {
           </select>
         </div>
 
-        {/* Delete Account */}
         <div className="mt-6">
           <button
             onClick={handleDeleteAccount}

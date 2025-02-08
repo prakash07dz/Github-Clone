@@ -12,7 +12,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:3002/login", {
+      const res = await fetch("https://github-clone-v5ul.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const Login = () => {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
-        window.location.href = "/"; // Redirect to home
+        window.location.href = "/"; 
       } else {
         alert("Login Failed!");
       }

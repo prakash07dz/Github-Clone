@@ -16,7 +16,7 @@ const UserRepo = ({ currentUser }) => {
     const fetchUserRepositories = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3002/repo/user/${currentUser}`
+          `https://github-clone-v5ul.onrender.com/repo/user/${currentUser}`
         );
         setRepositories(response.data.repositories);
         setLoading(false);

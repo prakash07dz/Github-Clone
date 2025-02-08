@@ -25,7 +25,6 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 text-white p-4">
       <div className="flex items-center justify-between max-w-screen-xl mx-auto">
-        {/* Logo Section */}
         <Link to="/" className="flex items-center space-x-2">
           <img
             src="https://www.github.com/images/modules/logos_page/GitHub-Mark.png"
@@ -35,7 +34,6 @@ const Navbar = () => {
           <h3 className="text-2xl font-bold">GitHub</h3>
         </Link>
 
-        {/* Navigation Links */}
         <div className="hidden sm:flex items-center space-x-6">
           <Link
             to="/create"
