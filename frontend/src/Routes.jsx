@@ -11,7 +11,7 @@ import TermsOfService from "./components/pages/TermsOfService";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import ContactForm from "./components/forms/ContactForm";
 import CreateRepository from "./components/forms/NewRepoForm";
-import UserRepo from "./components/repo/userRepo";
+import UserRepo from "./components/repo/UserRepo";
 
 // Auth Context
 import { useAuth } from "./authContext";
