@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const http = require("http");
 const { Server } = require("socket.io");
 const mainRouter = require("./routes/main.router");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -97,6 +98,11 @@ function startServer() {
 
     // app.use(bodyParser.json());
     app.use(express.json());
+
+    app.use(cors({
+        origin: "https://your-frontend-url.onrender.com",
+        credentials: true
+      }));      
 
     const mongoURL = process.env.MONGODB_URL;
 
