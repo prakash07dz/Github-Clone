@@ -2,7 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const http = require("http");
 const { Server } = require("socket.io");
 const mainRouter = require("./routes/main.router");
@@ -99,9 +98,9 @@ function startServer() {
     app.use(express.json());
 
     app.use(cors({
-        origin: "https://your-frontend-url.onrender.com",
+        origin: "https://githubclone-soob.onrender.com",
         credentials: true
-      }));      
+    }));
 
     const mongoURL = process.env.MONGODB_URL;
 
@@ -116,13 +115,13 @@ function startServer() {
     const io = new Server(httpServer, {
         cors: {
             origin: "*",
-            methods: ["GET,POST"],
+            methods: ["GET", "POST"]
         },
     });
 
     io.on("connection", (socket) => {
         socket.on("joinRoom", (userID) => {
-            user = userID;
+            let user = userID;
             console.log("=====");
             console.log(user);
             console.log("=====");
