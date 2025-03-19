@@ -28,13 +28,11 @@ const CreateRepository = ({ currentUser }) => {
     window.location.href = "/";
 
     try {
-      const response = await axios.post(
-        "https://github-clone-v5ul.onrender.com/repo/create",
-        {
-          ...formData,
-          owner: currentUser,
-        }
-      );
+      const url = import.meta.env.VITE_BACKEND_URL;
+      const response = await axios.post(`${url}/repo/create`, {
+        ...formData,
+        owner: currentUser,
+      });
       setMessage(response.data.message);
       setFormData({ name: "", description: "", content: "", visibility: true });
     } catch (error) {
@@ -79,7 +77,7 @@ const CreateRepository = ({ currentUser }) => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full border-gray-600 bg-gray-700 text-gray-100 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-1.5 border-gray-600 bg-gray-700 text-gray-100 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 

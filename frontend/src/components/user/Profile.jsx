@@ -18,9 +18,8 @@ const Profile = () => {
       }
 
       try {
-        const response = await fetch(
-          `https://github-clone-v5ul.onrender.com/userProfile/${userId}`
-        );
+        const url = import.meta.env.VITE_BACKEND_URL;
+        const response = await fetch(`${url}/userProfile/${userId}`);
         if (!response.ok) throw new Error(`Error: ${response.status}`);
         const data = await response.json();
         setUserDetails(data);

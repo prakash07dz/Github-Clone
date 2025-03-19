@@ -12,7 +12,8 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("https://github-clone-v5ul.onrender.com/login", {
+      const url = import.meta.env.VITE_BACKEND_URL;
+      const res = await fetch(`${url}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +25,7 @@ const Login = () => {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
-        window.location.href = "/"; 
+        window.location.href = "/";
       } else {
         alert("Login Failed!");
       }
@@ -50,10 +51,7 @@ const Login = () => {
         </h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-gray-300"
-            >
+            <label htmlFor="email" className="block text-gray-300">
               Email address
             </label>
             <input
@@ -68,10 +66,7 @@ const Login = () => {
           </div>
 
           <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-gray-300"
-            >
+            <label htmlFor="password" className="block text-gray-300">
               Password
             </label>
             <input
@@ -98,10 +93,7 @@ const Login = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-400">
             Don't have an account?{" "}
-            <Link
-              to="/signup"
-              className="text-blue-400 hover:text-blue-500"
-            >
+            <Link to="/signup" className="text-blue-400 hover:text-blue-500">
               Sign Up
             </Link>
           </p>

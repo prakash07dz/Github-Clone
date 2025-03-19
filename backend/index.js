@@ -94,28 +94,51 @@ function startServer() {
     const app = express();
     const port = process.env.PORT || 3000;
 
-    // app.use(bodyParser.json());
+    // Middleware
     app.use(express.json());
 
-    app.use(cors({
-        origin: "https://githubclone-soob.onrender.com",
-        credentials: true
-    }));
+    // CORS configuration
+    const allowedOrigins = [
+        // "http://localhost:5173", 
+        "https://githubclone-soob.onrender.com",
+    ];
 
+    app.use(
+        cors({
+            origin: function (origin, callback) {
+                // Allow requests with no origin (like mobile apps or curl requests)
+                if (!origin) return callback(null, true);
+
+                if (allowedOrigins.indexOf(origin) === -1) {
+                    const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+                    return callback(new Error(msg), false);
+                }
+
+                return callback(null, true);
+            },
+            credentials: true,
+        })
+    );
+
+    // Handle preflight requests
+    app.options("*", cors());
+
+    // Database connection
     const mongoURL = process.env.MONGODB_URL;
 
     mongoose.connect(mongoURL)
-        .then(() => { console.log("Database connected sucessfully!"); })
-        .catch((err) => { console.error("An error accured while connecting database:", err) })
+        .then(() => { console.log("Database connected successfully!"); })
+        .catch((err) => { console.error("An error occurred while connecting to the database:", err); });
 
-    app.use(cors({ origin: "*" }));
+    // Routes
     app.use("/", mainRouter);
 
+    // Socket.io setup
     const httpServer = http.createServer(app);
     const io = new Server(httpServer, {
         cors: {
-            origin: "*",
-            methods: ["GET", "POST"]
+            origin: allowedOrigins,
+            methods: ["GET", "POST"],
         },
     });
 
@@ -129,14 +152,8 @@ function startServer() {
         });
     });
 
-    const db = mongoose.connection;
-    db.once("open", async () => {
-        console.log("CRUD oprations called");
-        //CRUD operations here
-    });
-
+    // Start the server
     httpServer.listen(port, () => {
         console.log(`Server is running at PORT ${port}`);
     });
-
 }

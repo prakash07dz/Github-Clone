@@ -17,9 +17,8 @@ const Dashboard = () => {
 
     const fetchRepositories = async () => {
       try {
-        const response = await fetch(
-          `https://github-clone-v5ul.onrender.com/repo/user/${userId}`
-        );
+        const url = import.meta.env.VITE_BACKEND_URL;
+        const response = await fetch(`${url}/repo/user/${userId}`);
         if (!response.ok) {
           if (response.status === 404) {
             console.warn("No repositories found for this user.");
@@ -37,9 +36,8 @@ const Dashboard = () => {
 
     const fetchSuggestedRepositories = async () => {
       try {
-        const response = await fetch(
-          `https://github-clone-v5ul.onrender.com/repo/all`
-        );
+        const url = import.meta.env.VITE_BACKEND_URL;
+        const response = await fetch(`${url}/repo/all`);
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status}`);
         }
@@ -70,12 +68,12 @@ const Dashboard = () => {
       <Navbar />
       <section className="bg-gray-900 min-h-screen p-4">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-12 gap-4">
-          {/* Left Aside */}
+          {/* Left Aside - Suggested Repositories */}
           <aside className="md:col-span-3 bg-gray-800 p-4 rounded shadow">
             <h3 className="text-lg font-semibold text-white mb-4">
               Suggested Repositories
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3 overflow-auto h-[calc(100vh-200px)]">
               {(suggestedRepositories || []).map((repo) => (
                 <div key={repo._id} className="p-2 bg-gray-700 rounded shadow">
                   <h4 className="text-sm font-medium text-white">
@@ -87,7 +85,7 @@ const Dashboard = () => {
             </div>
           </aside>
 
-          {/* Main Section */}
+          {/* Main Section - Your Repositories */}
           <main className="md:col-span-6 bg-gray-800 p-6 rounded shadow">
             <h2 className="text-xl font-bold text-white mb-4">
               Your Repositories
@@ -101,7 +99,7 @@ const Dashboard = () => {
                 className="w-full p-2 border border-gray-600 rounded focus:outline-none focus:ring focus:ring-blue-200 bg-gray-700 text-white"
               />
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 overflow-auto h-[calc(100vh-200px)]">
               {(searchResults || []).map((repo) => (
                 <div key={repo._id} className="p-3 bg-gray-700 rounded shadow">
                   <h4 className="text-lg font-medium text-white">
@@ -113,12 +111,12 @@ const Dashboard = () => {
             </div>
           </main>
 
-          {/* Right Aside */}
+          {/* Right Aside - Upcoming Events */}
           <aside className="md:col-span-3 bg-gray-800 p-4 rounded shadow">
             <h3 className="text-lg font-semibold text-white mb-4">
               Upcoming Events
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 overflow-auto h-[calc(100vh-200px)]">
               <li className="p-2 bg-gray-700 rounded shadow">
                 <p className="text-sm font-medium text-white">
                   AI and Machine Learning Workshop - Jan 18

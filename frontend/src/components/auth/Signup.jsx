@@ -16,21 +16,18 @@ const Signup = () => {
 
     try {
       setLoading(true);
-
-      const response = await fetch(
-        "https://github-clone-v5ul.onrender.com/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            username: username,
-            password: password,
-          }),
-        }
-      );
+      const url = import.meta.env.VITE_BACKEND_URL;
+      const response = await fetch(`${url}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          username: username,
+          password: password,
+        }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
